@@ -57,4 +57,17 @@ class CramerGUI:
         self.det_label = tk.Label(self.root, text="---", width=10)
         self.det_label.grid(row=6, column=4)
         tk.Button(self.root, text="Calcular det.", command=self.calcular_determinante).grid(row=6, column=5)   
-        
+
+        self.actualizar_entradas()
+
+    def actualizar_entradas(self):
+        n=self.tamano.get()
+        for i in range(4):
+            for j in range(4):
+                estado = "normal" if i < n and j < n else "disabled"
+                self.entradas_A[i][j].config(state=estado)
+            self.entradas_b[i].config(state="normal" if i < n else "disabled")
+            self.entradas_x[i].config(state="normal" if i < n else "readonly")
+            if i >= n:
+                self.entradas_x[i].delete(0, tk.END)
+
