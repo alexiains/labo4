@@ -107,4 +107,22 @@ class CramerGUI:
         if A is not None:
             det = round(np.linalg.det(A), 4)
             self.det_label.config(text=str(det))
-    
+
+    def calcular(self):
+        A, b = self.obtener_datos()
+        if A is not None and b is not None:
+            det_A = np.linalg.det(A)
+            if np.isclose(det_A, 0):
+                messagebox.showerror("Error", "El determinante de A es cero, el sistema no tiene solución única.")
+                return
+            n = self.tamano.get()
+            x = np.zeros(n)
+            for i in range(n):
+                A_i = A.copy()
+                A_i[:, i] = b
+                x[i] = round(np.linalg.det(A_i) / det_A, 4)
+            for i in range(n):
+                self.entradas_x[i].config(state="normal")
+                self.entradas_x[i].delete(0, tk.END)
+                self.entradas_x[i].insert(0, str(x[i]))
+                self.entradas_x[i].config(state="readonly")
