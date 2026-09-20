@@ -102,4 +102,9 @@ class CramerGUI:
                 return None, None
         return A, b
 
+    def calcular_determinante(self):
+        A, _ = self.obtener_datos()
+        if A is not None:
+            det = round(np.linalg.det(A), 4)
+            self.det_label.config(text=str(det))
     
