@@ -126,3 +126,8 @@ class CramerGUI:
                 self.entradas_x[i].delete(0, tk.END)
                 self.entradas_x[i].insert(0, str(x[i]))
                 self.entradas_x[i].config(state="readonly")
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = CramerGUI(root)
+    root.mainloop()
