@@ -71,3 +71,16 @@ class CramerGUI:
             if i >= n:
                 self.entradas_x[i].delete(0, tk.END)
 
+    def borrar_todo(self):
+        for fila in self.entradas_A:
+            for entrada in fila:
+                entrada.config(state="normal")
+                entrada.delete(0, tk.END)
+        for entrada in self.entradas_b + self.entradas_x:
+            entrada.config(state="normal")
+            entrada.delete(0, tk.END)
+            if entrada in self.entradas_x:
+                entrada.config(state="readonly")
+        self.det_label.config(text="---")
+        self.actualizar_entradas()
+        
