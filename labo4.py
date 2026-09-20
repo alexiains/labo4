@@ -83,4 +83,23 @@ class CramerGUI:
                 entrada.config(state="readonly")
         self.det_label.config(text="---")
         self.actualizar_entradas()
-        
+
+    def obtener_datos(self):
+        n = self.tamano.get()
+        A = np.zeros((n, n))
+        b = np.zeros(n)
+        for i in range(n):
+            for j in range(n):
+                try:
+                    A[i, j] = float(self.entradas_A[i][j].get())
+                except ValueError:
+                    messagebox.showerror("Error", f"Valor inválido en A[{i+1},{j+1}]")
+                    return None, None
+            try:
+                b[i] = float(self.entradas_b[i].get())
+            except ValueError:
+                messagebox.showerror("Error", f"Valor inválido en b[{i+1}]")
+                return None, None
+        return A, b
+
+    
