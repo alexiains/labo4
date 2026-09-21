@@ -26,11 +26,11 @@ class CramerGUI:
         tk.Label(self.root, text="b", font=("Arial", 10, "bold")).grid(row=0, column=6, sticky="ew")
         tk.Label(self.root, text="x", font=("Arial", 10, "bold")).grid(row=0, column=7, sticky="ew")
 
-        # Números de columnas
+        # Números de columnas (0, 1, 2, 3) sobre la matriz A
         for j in range(4):
             tk.Label(self.root, text=str(j)).grid(row=1, column=j+2, sticky="ew")
 
-        # Números de filas
+        # Números de filas (0, 1, 2, 3) a la izquierda de la matriz A
         for i in range(4):
             tk.Label(self.root, text=str(i)).grid(row=i+2, column=1, sticky="e", padx=(5, 2))
 
@@ -50,6 +50,7 @@ class CramerGUI:
         for i in range(4):
             self.entradas_x[i].grid(row=i+2, column=7, padx=(5, 3), pady=2)
 
+        # Configurar expansión uniforme para las columnas de la matriz y vectores
         for col in range(2, 8):
             self.root.columnconfigure(col, weight=1)
 
