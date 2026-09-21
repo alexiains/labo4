@@ -46,7 +46,7 @@ class CramerGUI:
             self.entradas_b[i].grid(row=i+2, column=6, padx=(15, 3), pady=2)
 
         # Entradas del Vector x (Resultado)
-        self.entradas_x = [tk.Entry(self.root, width=5, state="readonly") for _ in range(4)]
+        self.entradas_x = [tk.Entry(self.root, width=5, state="disabled") for _ in range(4)]
         for i in range(4):
             self.entradas_x[i].grid(row=i+2, column=7, padx=(5, 3), pady=2)
 
@@ -77,9 +77,11 @@ class CramerGUI:
                 estado = "normal" if i < n and j < n else "disabled"
                 self.entradas_A[i][j].config(state=estado)
             self.entradas_b[i].config(state="normal" if i < n else "disabled")
-            self.entradas_x[i].config(state="normal" if i < n else "readonly")
+            self.entradas_x[i].config(state="disabled")
             if i >= n:
+                self.entradas_x[i].config(state="normal")
                 self.entradas_x[i].delete(0, tk.END)
+                self.entradas_x[i].config(state="disabled")
 
     def borrar_todo(self):
         for fila in self.entradas_A:
@@ -90,7 +92,7 @@ class CramerGUI:
             entrada.config(state="normal")
             entrada.delete(0, tk.END)
             if entrada in self.entradas_x:
-                entrada.config(state="readonly")
+                entrada.config(state="disabled")
         self.det_label.config(text="---")
         self.actualizar_entradas()
 
@@ -135,7 +137,7 @@ class CramerGUI:
                 self.entradas_x[i].config(state="normal")
                 self.entradas_x[i].delete(0, tk.END)
                 self.entradas_x[i].insert(0, str(x[i]))
-                self.entradas_x[i].config(state="readonly")
+                self.entradas_x[i].config(state="disabled")
 
 if __name__ == "__main__":
     root = tk.Tk()
