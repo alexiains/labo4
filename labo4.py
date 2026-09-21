@@ -1,3 +1,6 @@
+# Alumnas: Insua Alexia y Barra Azul
+# Laboratorio 4
+# Repositorio: https://github.com/alexiains/labo4.git
 import tkinter as tk
 from tkinter import messagebox
 import numpy as np
